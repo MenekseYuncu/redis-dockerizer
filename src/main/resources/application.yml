@@ -1,0 +1,18 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/redis
+    username: postgres
+    password: postgres
+
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: redispassword
+      ssl-enabled: false
+      timeout: 2000  # Timeout ayarı (ms cinsinden)
+
