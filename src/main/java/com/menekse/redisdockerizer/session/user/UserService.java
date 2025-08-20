@@ -1,4 +1,4 @@
-package com.menekse.redisdockerizer.user;
+package com.menekse.redisdockerizer.session.user;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;

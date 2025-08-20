@@ -1,4 +1,4 @@
-package com.menekse.redisdockerizer.caching;
+package com.menekse.redisdockerizer.caching.controller;
 
 import com.menekse.redisdockerizer.caching.model.BookEntity;
 import com.menekse.redisdockerizer.caching.service.CacheService;
@@ -9,7 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 /**
  * <h2>CacheController</h2>
- *
+ * <p>
  * This REST controller provides endpoints for managing book information stored in a Redis cache.
  * It interacts with the {@link CacheService} to perform CRUD operations on book data stored in Redis.
  * The cache allows for fast retrieval and modification of book information without repeatedly querying
