@@ -18,13 +18,55 @@
         <java.version>24</java.version>
     </properties>
     <dependencies>
-        <!-- Spring Boot Starter Web (REST API'ler için) -->
+        <!-- ======================================================= -->
+        <!-- 🚀 Core Spring Boot Dependencies -->
+        <!-- ======================================================= -->
+
+        <!-- For building REST APIs -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- Spring Boot DevTools (Geliştirme sırasında kullanmak için) -->
+        <!-- For caching support in Spring Boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+
+        <!-- For monitoring and application health endpoints -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- ======================================================= -->
+        <!-- 🗄️ Redis Dependencies -->
+        <!-- ======================================================= -->
+
+        <!-- For Redis integration with Spring Data -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <!-- Lettuce Redis client (async, scalable) -->
+        <dependency>
+            <groupId>io.lettuce</groupId>
+            <artifactId>lettuce-core</artifactId>
+        </dependency>
+
+        <!-- For managing user sessions in Redis -->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
+        </dependency>
+
+        <!-- ======================================================= -->
+        <!-- 🛠️ Development Tools -->
+        <!-- ======================================================= -->
+
+        <!-- For hot reload during development -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -32,54 +74,27 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Lombok (Kod yazımını hızlandırmak için) -->
+        <!-- For reducing boilerplate code (Getters, Setters, etc.) -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
 
-        <!-- Spring Boot Starter Test (Testler için) -->
+        <!-- ======================================================= -->
+        <!-- ✅ Testing -->
+        <!-- ======================================================= -->
+
+        <!-- For unit and integration testing -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
-        <!-- Redis ile veri saklama ve session yönetimi için -->
-        <!-- Spring Boot Starter Data Redis -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-
-        <!-- Lettuce Redis Client (Asenkron Redis bağlantısı için) -->
-        <dependency>
-            <groupId>io.lettuce</groupId>
-            <artifactId>lettuce-core</artifactId>
-        </dependency>
-
-        <!-- Spring Session Redis (Session yönetimi için) -->
-        <dependency>
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session-data-redis</artifactId>
-        </dependency>
-
-        <!-- Spring Boot Starter Cache (Cache yönetimi için) -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-cache</artifactId>
-        </dependency>
-
-        <!-- Spring Boot Starter Actuator (Uygulama sağlığı ve izleme için) -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
     </dependencies>
-
     <build>
         <plugins>
+            <!-- Compiler plugin to enable Lombok annotation processing -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -92,6 +107,7 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
+            <!-- Spring Boot Maven plugin to package the application -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

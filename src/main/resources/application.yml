@@ -1,18 +1,20 @@
 server:
-  port: 8082
+  port: 8082 # Port where the Spring Boot application will run (default: 8080)
 
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/redis
-    username: postgres
-    password: postgres
-
+  session:
+    store-type: redis # Store HTTP session data in Redis (for distributed sessions)
 
   data:
     redis:
-      host: localhost
-      port: 6379
-      password: redispassword
-      ssl-enabled: false
-      timeout: 2000  # Timeout ayarı (ms cinsinden)
+      host: ${REDIS_HOST:localhost} # Redis host (default: localhost if not set)
+      port: ${REDIS_PORT:6379}      # Redis port (default: 6379 if not set)
+      password: ${REDIS_PASSWORD:password}  # Redis password (default: 'password' if not set)
+      ssl-enabled: false            # SSL connection for Redis (false for local setups, true for cloud like AWS ElastiCache)
+      timeout: 2000                # Redis connection timeout in milliseconds (default: 2000ms)
 
+info:
+  application:
+    name: '@project.name@'        # Application name from project metadata
+    description: '@project.description@' # Application description from project metadata
+    version: '@project.version@'  # Application version from project metadata
