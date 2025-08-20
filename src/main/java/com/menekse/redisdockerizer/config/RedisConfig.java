@@ -1,4 +1,4 @@
-package com.menekse.redisdockerizer.basic.config;
+package com.menekse.redisdockerizer.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
