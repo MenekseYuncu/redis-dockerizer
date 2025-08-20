@@ -5,6 +5,9 @@ spring:
   session:
     store-type: redis # Store HTTP session data in Redis (for distributed sessions)
 
+  cache:
+    type: redis
+
   data:
     redis:
       host: ${REDIS_HOST:localhost} # Redis host (default: localhost if not set)
