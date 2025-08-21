@@ -1,4 +1,4 @@
-package com.menekse.redisdockerizer.config;
+package com.menekse.redisdockerizer.caching.config;
 
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
