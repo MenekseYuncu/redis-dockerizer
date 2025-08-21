@@ -2,7 +2,7 @@ version: '3.8' # Docker Compose file format version
 
 services:
   redis:
-    image: redis:7.2 # Use the official Redis image (version 7.2)
+    image: redis # Use the official Redis image (version 7.2)
     container_name: redis # Container name for Redis
     ports:
       - "6379:6379" # Map Redis default port to host
