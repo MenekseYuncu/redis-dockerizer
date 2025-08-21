@@ -6,7 +6,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.5.4</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
     <groupId>com.menekse</groupId>
     <artifactId>RedisDockerizer</artifactId>
@@ -19,29 +19,35 @@
     </properties>
     <dependencies>
         <!-- ======================================================= -->
-        <!-- 🚀 Core Spring Boot Dependencies -->
+        <!--   Core Spring Boot Dependencies -->
         <!-- ======================================================= -->
 
-        <!-- For building REST APIs -->
+        <!--     For building REST APIs   -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- For caching support in Spring Boot -->
+        <!--   For JSON data binding -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+        <!-- For caching support -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-cache</artifactId>
         </dependency>
 
-        <!-- For monitoring and application health endpoints -->
+        <!-- For monitoring and health endpoints -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
         <!-- ======================================================= -->
-        <!-- 🗄️ Redis Dependencies -->
+        <!--  ️ Redis Dependencies -->
         <!-- ======================================================= -->
 
         <!-- For Redis integration with Spring Data -->
@@ -63,7 +69,7 @@
         </dependency>
 
         <!-- ======================================================= -->
-        <!-- 🛠️ Development Tools -->
+        <!--    Development Tools -->
         <!-- ======================================================= -->
 
         <!-- For hot reload during development -->
@@ -74,22 +80,11 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- For reducing boilerplate code (Getters, Setters, etc.) -->
+        <!-- For reducing boilerplate code -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
-        </dependency>
-
-        <!-- ======================================================= -->
-        <!-- ✅ Testing -->
-        <!-- ======================================================= -->
-
-        <!-- For unit and integration testing -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
