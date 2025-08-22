@@ -64,7 +64,7 @@ The application will start running at `http://localhost:8082`.
 
 Use the prepared Postman collection to test API endpoints:
 
-👉 [POSTMAN COLLECTION URL](https://www.postman.com/menekse-3683/workspace/redis-dockerizer/collection/24190370-5f0f8ac6-13e0-4983-aa1a-d1fd770f2d3d?action=share&source=copy-link&creator=24190370)
+**Postman Collection:** [POSTMAN COLLECTION URL](https://www.postman.com/menekse-3683/workspace/redis-dockerizer/collection/24190370-5f0f8ac6-13e0-4983-aa1a-d1fd770f2d3d?action=share&source=copy-link&creator=24190370)
 
 **Import Steps:**
 1. Open Postman
