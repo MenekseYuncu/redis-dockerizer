@@ -1,32 +1,26 @@
-# Redis Dockerizer - Spring Boot & Redis Integration Demo
+# Redis Dockerizer - Spring Boot Redis Integration
 
-## Project Overview
+## Project Purpose
 
-This project demonstrates **Redis integration patterns with Spring Boot** through a comprehensive example application. It contains micro-modules showcasing different Redis usage scenarios (Caching, Key Management, Pub/Sub, Session Management) with **Docker Compose** setup for easy Redis installation and a ready-to-use **Postman Collection** for testing.
+This project provides **modular implementations of four essential Redis integration scenarios** with Spring Boot:
 
----
+1. **Cache Management** - Performance optimization by reducing database queries
+2. **Key Management** - Managing temporary data (tokens, OTP, etc.)
+3. **Pub/Sub** - Real-time messaging and event-driven architecture
+4. **Session Management** - Centralized session management in distributed systems
 
-## Project Structure
+**Project Approach:** Each Redis use case is developed as a separate module. Developers can **clone the project and choose the specific module** they need to directly integrate into their own projects or use as reference for further development.
 
-```
-redis-dockerizer-main
-|
-├── src/main/java/com/integration/redisdockerizer
-│   ├── caching/                      # Redis Cache examples
-│   ├── keymanagement/                # Redis Key-Value operations
-│   ├── pubsub/                       # Publish/Subscribe implementation
-│   ├── session/                      # Session & Online Users management
-│   └── RedisDockerizerApplication.java
-└── src/main/resources/application.yml
-├── docker-compose.yml                # Redis container configuration
-├── pom.xml                           # Maven dependencies
-```
+This approach allows you to start working with **only the module you need** without having to learn all Redis implementations.
 
----
+## System Requirements
 
-## Project Setup
+- Java 17+
+- Maven 3.6+
+- Docker and Docker Compose
+- Postman (for API testing)
 
-Follow these steps to run the project on your local machine:
+## Installation Steps
 
 ### 1. Clone the Repository
 
@@ -37,15 +31,15 @@ git clone https://github.com/MenekseYuncu/redis-dockerizer.git
 cd redis-dockerizer
 ```
 
-### 2. Start Redis with Docker
+### 2. Start Redis Container
 
-The project includes a ready-to-use `docker-compose.yml` file for quick Redis setup.
+Run Redis using Docker Compose:
 
 ```bash
 docker-compose up -d
 ```
 
-✔️ Redis is now running on **localhost:6379**
+This command will start Redis on `localhost:6379`.
 
 ### 3. Install Maven Dependencies
 
@@ -53,7 +47,10 @@ docker-compose up -d
 ./mvnw clean install
 ```
 
-(Windows: `mvnw.cmd clean install`)
+For Windows:
+```bash
+mvnw.cmd clean install
+```
 
 ### 4. Start the Spring Boot Application
 
@@ -61,90 +58,108 @@ docker-compose up -d
 ./mvnw spring-boot:run
 ```
 
-✔️ Application will run on `http://localhost:8082` by default
+The application will start running at `http://localhost:8082`.
 
-### 5. Import the Postman Collection
+### 5. Import Postman Collection
 
-Use the prepared Postman collection to test all endpoints:
+Use the prepared Postman collection to test API endpoints:
 
-👉 [Redis Dockerizer - Integration API Collection](https://www.postman.com/menekse-3683/workspace/redis-dockerizer/collection/24190370-5f0f8ac6-13e0-4983-aa1a-d1fd770f2d3d?action=share&source=copy-link&creator=24190370)
+👉 [POSTMAN COLLECTION URL](https://www.postman.com/menekse-3683/workspace/redis-dockerizer/collection/24190370-5f0f8ac6-13e0-4983-aa1a-d1fd770f2d3d?action=share&source=copy-link&creator=24190370)
 
-* Open Postman
-* Click **Import** → **Link** → Paste the URL above
-* You can now test all endpoints 
+**Import Steps:**
+1. Open Postman
+2. Click "Import" button
+3. Select "Link" tab
+4. Paste the URL above
+5. Click "Continue" and "Import" buttons
 
----
+## Project Modules
 
-## Redis Modules
+### 1. Cache Management
+- **Purpose:** Reduce database load by storing frequently accessed data in memory
+- **Endpoints:**
+  - `GET /api/cache/{id}` - Retrieve book from cache by ID
+  - `POST /api/cache` - Create or update book in cache
+  - `DELETE /api/cache/{id}` - Delete book from cache
 
-### 1. **Cache Management**
-
-* **Purpose:** Store frequently accessed data in memory (Redis) to prevent repeated database queries
-* **Scenario:** Book list data is stored in the database. On first request, data is fetched from the database and cached in Redis. Subsequent requests retrieve data directly from Redis
-* **Implementation:**
-  * `BookEntity` → Cacheable model
-  * `CacheController` → Book addition/retrieval operations
-  * `CacheService` → Redis cache management
-* **Advantage:** High performance, reduced database load
-
----
-
-### 2. **Key Management**
-
-* **Purpose:** Demonstrate Redis's core **key-value store** functionality
-* **Scenario:** Store user settings or temporary data (e.g., verification codes, tokens) in Redis
-* **Implementation:**
-  * `RedisController` → set/get/delete operations
-  * `RedisService` → Manages operations using RedisTemplate
-* **Advantage:** Simple and fast key-value management with dynamic data storage capability
-
----
-
-### 3. **Pub/Sub (Publish/Subscribe)**
-
-* **Purpose:** Enable **real-time messaging** between services
-* **Scenario:** One service publishes messages while others subscribe to the same channel to receive messages instantly. Used in chat applications, notification systems, and event-driven architectures
-* **Implementation:**
-  * `PubSubController` → Message publishing endpoint
-  * `RedisPublisher` → Publishes messages
-  * `RedisSubscriber` → Listens for messages
-  * `RedisPubSubConfig` → Redis channel configuration
-* **Advantage:** Enables scalable, event-driven architecture in distributed systems
-
----
-
-### 4. **Session Management**
-
-* **Purpose:** Centralized user session management
-* **Scenario:** When multiple backend instances are running, user session information shouldn't be confined to a single instance. Redis enables centralized session storage
-* **Implementation:**
-  * `RedisSessionConfig` → Session management configuration
-  * `OnlineUserController` → Lists online/offline users
-  * `OnlineUserService` → Manages user status in Redis
-  * `UserEntity` → User model structure
-* **Advantage:**
-  * Users see the same session information regardless of which server they connect to
-  * Simplified online/offline user tracking
-  * Scalable session management in distributed systems
-
----
+### 2. Key Management
+- **Purpose:** Store temporary data using Redis key-value structure
+- **Endpoints:**
+  - `POST /api/redis/set` - Store key-value pair with TTL support
+  - `GET /api/redis/get/{key}` - Retrieve value by key
+  - `DELETE /api/redis/del/{key}` - Delete key from Redis
+  - `GET /api/redis/keys` - Get all keys (for debugging)
+  - `POST /api/redis/expire/{key}` - Set TTL for existing key
 
 
-## Technical Stack
+### 3. Pub/Sub
+- **Purpose:** Real-time messaging between services
+- **Endpoints:**
+  - `POST /api/pubsub/publish` - Publish structured message with sender info
+  - `POST /api/pubsub/publish/simple` - Publish simple string message
+  - `POST /api/pubsub/subscribe` - Subscribe to channel
+  - `POST /api/pubsub/unsubscribe` - Unsubscribe from channel
+  - `GET /api/pubsub/status` -  Check Pub/Sub service status
 
-- **Java 17** - Programming language
-- **Spring Boot 3.x** - Application framework
-- **Redis** - In-memory data store
-- **Docker & Docker Compose** - Containerization
-- **Maven** - Dependency management
-- **Postman** - API testing
 
----
+### 4. Session Management
+- **Purpose:** Centrally manage user session information
+- **Endpoints:**
+  - `POST /api/session/login/{userId}` - Log in user and mark as online
+  - `POST /api/session/logout/{userId}` - Log out user and mark as offline
+  - `POST /api/session/refresh/{userId}` - Refresh user's online TTL
+  - `GET /api/session/status/{userId}` - Get user online status and last active time
+  - `GET /api/session/online` - Get all currently online users
 
-##  Support
 
-If you have any questions or need assistance:
+## Testing
 
-1. Check the API documentation in Postman
-2. Review the code comments for each module
-3. Open an issue on GitHub with detailed description
+1. Ensure the application is running (`http://localhost:8082`)
+2. Verify Redis container is active (`docker ps`)
+3. Test endpoints sequentially using Postman collection
+4. Run example requests for each module
+
+## Project Structure
+
+```
+src/main/java/com/integration/redisdockerizer/
+├── caching/                    # Cache Management module
+├── keymanagement/              # Key Management module  
+├── pubsub/                     # Pub/Sub module
+├── session/                    # Session Management module(Online/Offline User)
+└── RedisDockerizerApplication.java
+```
+
+## Configuration
+
+Redis connection settings are defined in `src/main/resources/application.yml`:
+
+```yaml
+spring:
+  data:
+    redis:
+      host: localhost
+      port: 6379
+```
+
+## Technology Stack
+
+- Java 17
+- Spring Boot 3.x
+- Spring Data Redis
+- Redis 7.x
+- Docker & Docker Compose
+- Maven
+
+## Detailed Documentation
+
+For detailed explanations about Redis usage scenarios and Spring Boot integration covered in this project, you can read my Medium article (in Turkish):
+
+**Medium Article:** [Redis ve Spring Boot: Modern Uygulamalarda Performans ve Ölçeklenebilirlik Rehberi](https://medium.com/@menekseyuncu/redis-spring-boot-article)
+
+## Support
+
+For questions about the project:
+- You can use GitHub Issues
+- Review API documentation in Postman collection
+- Refer to detailed explanations in the Medium article
