@@ -4,7 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.integration.redisdockerizer.pubsub.model.MessageDTO;
 import jakarta.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.data.redis.listener.ChannelTopic;
@@ -25,15 +27,25 @@ import org.springframework.stereotype.Service;
  * - **Subscribing to channels**: Adding listeners to Redis channels so that it can process messages as they arrive.
  * - **Unsubscribing from channels**: Removing listeners from channels when they are no longer needed.
  * - **Processing messages**: Handling both structured messages (deserialized `MessageDTO`) and simple text messages.
+ * <p>
+ * ⚠ **Important Note on Redis Pub/Sub:**
+ * - Redis Pub/Sub does **not persist messages**. Subscribers only receive messages if they are online
+ * and actively listening at the time of publication.
+ * - If a subscriber is offline, messages published during that time are lost and will not be re-delivered.
+ * - Redis does not guarantee delivery latency or reliability. There is no acknowledgment or retry mechanism.
+ * <p>
+ * For scenarios requiring message durability, acknowledgment, or replay, consider using **Redis Streams**
+ * instead of Pub/Sub.
  */
 @Service
+@RequiredArgsConstructor
 public class RedisSubscriber implements MessageListener {
 
-    @Autowired
-    private RedisMessageListenerContainer redisMessageListenerContainer;
+    private static final Logger logger = LoggerFactory.getLogger(RedisSubscriber.class);
 
-    @Autowired
-    private ObjectMapper objectMapper;
+    private final RedisMessageListenerContainer redisMessageListenerContainer;
+
+    private final ObjectMapper objectMapper;
 
     /**
      * Initializes the RedisSubscriber by subscribing to predefined channels.
@@ -65,7 +77,7 @@ public class RedisSubscriber implements MessageListener {
      */
     public void subscribeToChannel(String channelName) {
         redisMessageListenerContainer.addMessageListener(this, new ChannelTopic(channelName));
-        System.out.println("Listening to channel: " + channelName);
+        logger.info("Listening to channel: {}", channelName);
     }
 
     /**
@@ -83,7 +95,7 @@ public class RedisSubscriber implements MessageListener {
      */
     public void unsubscribeFromChannel(String channelName) {
         redisMessageListenerContainer.removeMessageListener(this, new ChannelTopic(channelName));
-        System.out.println("Stopped listening to channel: " + channelName);
+        logger.info("Stopped listening to channel: {}", channelName);
     }
 
     /**
@@ -102,24 +114,23 @@ public class RedisSubscriber implements MessageListener {
         String channel = new String(message.getChannel());
         String messageBody = new String(message.getBody());
 
-        System.out.println("\n=== NEW MESSAGE RECEIVED ===");
-        System.out.println("Channel: " + channel);
-        System.out.println("Raw Message: " + messageBody);
+        logger.info("=== NEW MESSAGE RECEIVED ===");
+        logger.info("Channel: {}", channel);
+        logger.info("Raw Message: {}", messageBody);
 
         try {
             MessageDTO parsedMessage = objectMapper.readValue(messageBody, MessageDTO.class);
-            System.out.println("Parsed Message: " + parsedMessage);
+            logger.info("Parsed Message: {}", parsedMessage);
 
             processMessage(channel, parsedMessage);
 
-        } catch (JsonProcessingException e) {
-            System.out.println("Simple String Message: " + messageBody);
+        } catch (JsonProcessingException _) {
+            logger.debug("Simple String Message: {}", messageBody);
             processSimpleMessage(channel, messageBody);
         }
 
-        System.out.println("=========================\n");
+        logger.info("=========================");
     }
-
 
     /**
      * Processes a structured message (MessageDTO) based on the channel it was received from.
@@ -135,13 +146,13 @@ public class RedisSubscriber implements MessageListener {
     private void processMessage(String channel, MessageDTO message) {
         switch (channel) {
             case "notifications":
-                System.out.println("Processing Notification: " + message.getContent());
+                logger.info("Processing Notification: {}", message.getContent());
                 break;
             case "user-messages":
-                System.out.println("Processing User Message from " + message.getSender() + ": " + message.getContent());
+                logger.info("Processing User Message from {}: {}", message.getSender(), message.getContent());
                 break;
             default:
-                System.out.println("Processing General Message: " + message.getContent());
+                logger.info("Processing General Message: {}", message.getContent());
         }
     }
 
@@ -156,6 +167,6 @@ public class RedisSubscriber implements MessageListener {
      * @param message The simple string message received from the channel.
      */
     private void processSimpleMessage(String channel, String message) {
-        System.out.println("Processing Simple Message - Channel: " + channel + ", Message: " + message);
+        logger.info("Processing Simple Message - Channel: {}, Message: {}", channel, message);
     }
 }

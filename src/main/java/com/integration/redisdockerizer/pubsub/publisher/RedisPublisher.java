@@ -3,7 +3,9 @@ package com.integration.redisdockerizer.pubsub.publisher;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.integration.redisdockerizer.pubsub.model.MessageDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -12,26 +14,37 @@ import java.util.UUID;
 /**
  * RedisPublisher is a service class responsible for interacting with Redis to publish messages
  * to Redis channels. This class serves as the bridge between the application and
- * the Redis Pub/sub * system, enabling asynchronous communication between different parts of the system using Redis.
+ * the Redis Pub/Sub system, enabling asynchronous communication between different parts of the system using Redis.
  * <p>
  * The class provides two main types of message publishing:
  * 1. **Complex message publishing**: This involves publishing messages encapsulated in a `MessageDTO` object,
  * which includes fields like `content` and `sender`. These messages are serialized to JSON before being
  * sent to Redis channels.
- * 2. **Simple message publishing**: This involves sending keymanagement string messages to Redis channels.
+ * 2. **Simple message publishing**: This involves sending key management string messages to Redis channels.
  * <p>
  * The `RedisPublisher` class is used to decouple the process of message publication from other business logic,
  * allowing the system to asynchronously send messages to various Redis channels. Redis' Pub/Sub system
  * helps to implement efficient event-driven architectures.
+ * <p>
+ * ⚠ **Important Note on Redis Pub/Sub:**
+ * - Redis Pub/Sub does **not persist messages**. Messages are only delivered to subscribers that are online
+ *   and actively listening at the time of publication.
+ * - If a subscriber is offline or temporarily disconnected, the message is lost and will not be re-delivered.
+ * - Redis does not guarantee or measure delivery latency. Messages are delivered as quickly as possible,
+ *   but there is no built-in acknowledgment or retry mechanism.
+ * <p>
+ * For use cases that require message durability, acknowledgment, or replay, consider using **Redis Streams**
+ * instead of Pub/Sub.
  */
 @Service
+@RequiredArgsConstructor
 public class RedisPublisher {
 
-    @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
+    private static final Logger logger = LoggerFactory.getLogger(RedisPublisher.class);
 
-    @Autowired
-    private ObjectMapper objectMapper;
+    private final RedisTemplate<String, Object> redisTemplate;
+
+    private final ObjectMapper objectMapper;
 
     /**
      * Publishes a complex message (MessageDTO) to a specified Redis channel.
@@ -60,9 +73,9 @@ public class RedisPublisher {
 
             redisTemplate.convertAndSend(channel, jsonMessage);
 
-            System.out.println("Message sent - Channel: " + channel + ", Message: " + jsonMessage);
+            logger.info("Message sent - Channel: {}, Message: {}", channel, jsonMessage);
         } catch (JsonProcessingException e) {
-            System.err.println("Error occurred while converting the message to JSON: " + e.getMessage());
+            logger.error("Error occurred while converting the message to JSON", e);
         }
     }
 
@@ -73,7 +86,7 @@ public class RedisPublisher {
      * to Redis channels. These messages are sent as plain strings without any additional metadata or structure.
      * <p>
      * Why is this method needed?
-     * - It allows the application to send keymanagement text messages quickly to Redis channels.
+     * - It allows the application to send key management text messages quickly to Redis channels.
      * - This method is ideal for scenarios where the message content is simple and does not require complex serialization.
      *
      * @param channel The Redis channel to which the message will be published.
@@ -81,7 +94,6 @@ public class RedisPublisher {
      */
     public void publishSimpleMessage(String channel, String message) {
         redisTemplate.convertAndSend(channel, message);
-
-        System.out.println("Simple message sent - Channel: " + channel + ", Message: " + message);
+        logger.info("Simple message sent - Channel: {}, Message: {}", channel, message);
     }
 }

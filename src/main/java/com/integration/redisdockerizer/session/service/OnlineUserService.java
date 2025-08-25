@@ -33,7 +33,7 @@ public class OnlineUserService {
      * Time-to-live (TTL) in seconds for online status.
      * After this period, the user's online status will expire, and they will be marked offline automatically.
      */
-    private final long ONLINE_TTL = 30;
+    private static final long ONLINE_TTL = 30;
 
     /**
      * Generates the Redis key used to store the online status of a user.

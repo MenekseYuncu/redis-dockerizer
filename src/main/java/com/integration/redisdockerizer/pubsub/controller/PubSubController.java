@@ -3,7 +3,7 @@ package com.integration.redisdockerizer.pubsub.controller;
 import com.integration.redisdockerizer.pubsub.model.MessageDTO;
 import com.integration.redisdockerizer.pubsub.publisher.RedisPublisher;
 import com.integration.redisdockerizer.pubsub.subscriber.RedisSubscriber;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,14 +16,13 @@ import java.util.Map;
  * and retrieving the status of the Redis Pub/Sub service.
  */
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/pubsub")
 public class PubSubController {
 
-    @Autowired
-    private RedisPublisher redisPublisher;
+    private final RedisPublisher redisPublisher;
 
-    @Autowired
-    private RedisSubscriber redisSubscriber;
+    private final RedisSubscriber redisSubscriber;
 
     /**
      * Publishes a message to a specified Redis channel.
