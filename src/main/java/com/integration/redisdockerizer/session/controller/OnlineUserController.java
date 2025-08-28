@@ -3,6 +3,7 @@ package com.integration.redisdockerizer.session.controller;
 import com.integration.redisdockerizer.session.service.OnlineUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
@@ -31,13 +32,28 @@ public class OnlineUserController {
 
     /**
      * Logs in a user and marks them as online.
-     * This endpoint sets a TTL for the user’s online status, after which they will be marked offline automatically.
+     * This endpoint sets a TTL for the user's online status, after which they will be marked offline automatically.
      *
      * @param userId the ID of the user to log in
      * @return a confirmation message indicating the user is now online
      */
     @PostMapping("/login/{userId}")
     public ResponseEntity<String> login(@PathVariable String userId) {
+        // Input validation
+        if (!StringUtils.hasText(userId)) {
+            return ResponseEntity.badRequest().body("User ID cannot be empty");
+        }
+        
+        // User ID validation (alphanumeric only)
+        if (!userId.matches("^[a-zA-Z0-9\\-_\\.]+$")) {
+            return ResponseEntity.badRequest().body("Invalid user ID format");
+        }
+        
+        // Length validation
+        if (userId.length() > 100) {
+            return ResponseEntity.badRequest().body("User ID too long");
+        }
+        
         onlineUserService.login(userId);
         return ResponseEntity.ok("User " + userId + " is now ONLINE");
     }
@@ -51,6 +67,16 @@ public class OnlineUserController {
      */
     @PostMapping("/logout/{userId}")
     public ResponseEntity<String> logout(@PathVariable String userId) {
+        // Input validation
+        if (!StringUtils.hasText(userId)) {
+            return ResponseEntity.badRequest().body("User ID cannot be empty");
+        }
+        
+        // User ID validation
+        if (!userId.matches("^[a-zA-Z0-9\\-_\\.]+$")) {
+            return ResponseEntity.badRequest().body("Invalid user ID format");
+        }
+        
         onlineUserService.logout(userId);
         return ResponseEntity.ok("User " + userId + " is now OFFLINE");
     }
@@ -64,6 +90,16 @@ public class OnlineUserController {
      */
     @PostMapping("/refresh/{userId}")
     public ResponseEntity<String> refresh(@PathVariable String userId) {
+        // Input validation
+        if (!StringUtils.hasText(userId)) {
+            return ResponseEntity.badRequest().body("User ID cannot be empty");
+        }
+        
+        // User ID validation
+        if (!userId.matches("^[a-zA-Z0-9\\-_\\.]+$")) {
+            return ResponseEntity.badRequest().body("Invalid user ID format");
+        }
+        
         onlineUserService.refresh(userId);
         return ResponseEntity.ok("User " + userId + " TTL refreshed");
     }
@@ -78,6 +114,16 @@ public class OnlineUserController {
      */
     @GetMapping("/status/{userId}")
     public ResponseEntity<String> getUserStatus(@PathVariable String userId) {
+        // Input validation
+        if (!StringUtils.hasText(userId)) {
+            return ResponseEntity.badRequest().body("User ID cannot be empty");
+        }
+        
+        // User ID validation
+        if (!userId.matches("^[a-zA-Z0-9\\-_\\.]+$")) {
+            return ResponseEntity.badRequest().body("Invalid user ID format");
+        }
+        
         boolean online = onlineUserService.isOnline(userId);
         String responseMessage = "User " + userId + " online? " + online;
 
