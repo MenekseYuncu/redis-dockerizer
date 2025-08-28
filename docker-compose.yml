@@ -2,14 +2,24 @@ version: '3.8' # Docker Compose file format version
 
 services:
   redis:
-    image: redis # Use the official Redis image (version 7.2)
+    image: redis:7.2-alpine # Use the official Redis image (version 7.2)
     container_name: redis # Container name for Redis
     ports:
-      - "6379:6379" # Map Redis default port to host
+      - "127.0.0.1:6379:6379" # Map Redis default port to host (localhost only)
+    command: redis-server --requirepass ${REDIS_PASSWORD:-password} --bind 127.0.0.1
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-password}
     restart: unless-stopped # Automatically restart unless manually stopped
     volumes:
       - redis-data:/data # Persist Redis data on the host machine
-
+    user: "999:999" # Non-root user for security
+    security_opt:
+      - no-new-privileges:true
+    ulimits:
+      nproc: 65536
+      nofile:
+        soft: 20000
+        hard: 40000
 
 volumes:
   redis-data:   # Volume for Redis persistence
