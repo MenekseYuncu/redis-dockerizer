@@ -5,6 +5,7 @@ import com.integration.redisdockerizer.pubsub.publisher.RedisPublisher;
 import com.integration.redisdockerizer.pubsub.subscriber.RedisSubscriber;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -61,9 +62,24 @@ public class PubSubController {
         String content = request.get("content");
         String sender = request.get("sender");
 
-        if (channel == null || content == null) {
+        // Input validation
+        if (!StringUtils.hasText(channel) || !StringUtils.hasText(content)) {
             Map<String, String> error = new HashMap<>();
             error.put("error", "Channel and content fields are required.");
+            return ResponseEntity.badRequest().body(error);
+        }
+        
+        // Length validation
+        if (channel.length() > 100 || content.length() > 10000) {
+            Map<String, String> error = new HashMap<>();
+            error.put("error", "Channel or content too long.");
+            return ResponseEntity.badRequest().body(error);
+        }
+        
+        // Channel name validation (alphanumeric and hyphens only)
+        if (!channel.matches("^[a-zA-Z0-9\\-]+$")) {
+            Map<String, String> error = new HashMap<>();
+            error.put("error", "Invalid channel name. Use only letters, numbers, and hyphens.");
             return ResponseEntity.badRequest().body(error);
         }
 
@@ -112,9 +128,24 @@ public class PubSubController {
         String channel = request.get("channel");
         String message = request.get("message");
 
-        if (channel == null || message == null) {
+        // Input validation
+        if (!StringUtils.hasText(channel) || !StringUtils.hasText(message)) {
             Map<String, String> error = new HashMap<>();
             error.put("error", "Channel and message fields are required.");
+            return ResponseEntity.badRequest().body(error);
+        }
+        
+        // Length validation
+        if (channel.length() > 100 || message.length() > 10000) {
+            Map<String, String> error = new HashMap<>();
+            error.put("error", "Channel or message too long.");
+            return ResponseEntity.badRequest().body(error);
+        }
+        
+        // Channel name validation
+        if (!channel.matches("^[a-zA-Z0-9\\-]+$")) {
+            Map<String, String> error = new HashMap<>();
+            error.put("error", "Invalid channel name. Use only letters, numbers, and hyphens.");
             return ResponseEntity.badRequest().body(error);
         }
 
@@ -159,9 +190,17 @@ public class PubSubController {
     public ResponseEntity<Map<String, String>> subscribeToChannel(@RequestBody Map<String, String> request) {
         String channel = request.get("channel");
 
-        if (channel == null) {
+        // Input validation
+        if (!StringUtils.hasText(channel)) {
             Map<String, String> error = new HashMap<>();
             error.put("error", "Channel field is required.");
+            return ResponseEntity.badRequest().body(error);
+        }
+        
+        // Channel name validation
+        if (!channel.matches("^[a-zA-Z0-9\\-]+$")) {
+            Map<String, String> error = new HashMap<>();
+            error.put("error", "Invalid channel name. Use only letters, numbers, and hyphens.");
             return ResponseEntity.badRequest().body(error);
         }
 
@@ -206,9 +245,17 @@ public class PubSubController {
     public ResponseEntity<Map<String, String>> unsubscribeFromChannel(@RequestBody Map<String, String> request) {
         String channel = request.get("channel");
 
-        if (channel == null) {
+        // Input validation
+        if (!StringUtils.hasText(channel)) {
             Map<String, String> error = new HashMap<>();
             error.put("error", "Channel field is required.");
+            return ResponseEntity.badRequest().body(error);
+        }
+        
+        // Channel name validation
+        if (!channel.matches("^[a-zA-Z0-9\\-]+$")) {
+            Map<String, String> error = new HashMap<>();
+            error.put("error", "Invalid channel name. Use only letters, numbers, and hyphens.");
             return ResponseEntity.badRequest().body(error);
         }
 
