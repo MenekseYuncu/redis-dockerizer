@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Annotation profile for caching" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+        </processorPath>
+        <module name="caching" />
+        <module name="RedisDockerizer" />
+      </profile>
+      <profile name="Annotation profile for session-management" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+        </processorPath>
+        <module name="key-management" />
+        <module name="session-management" />
+        <module name="pubsub" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="RedisCache" target="24" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="RedisCache" options="-parameters" />
+      <module name="RedisDockerizer" options="-parameters" />
+      <module name="caching" options="-parameters" />
+      <module name="key-management" options="-parameters" />
+      <module name="pubsub" options="-parameters" />
+      <module name="session-management" options="-parameters" />
+    </option>
+  </component>
+</project>
