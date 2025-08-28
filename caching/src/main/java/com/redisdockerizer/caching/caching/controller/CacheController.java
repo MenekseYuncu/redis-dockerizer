@@ -1,7 +1,7 @@
-package com.integration.redisdockerizer.caching.controller;
+package com.redisdockerizer.caching.caching.controller;
 
-import com.integration.redisdockerizer.caching.model.BookEntity;
-import com.integration.redisdockerizer.caching.service.CacheService;
+import com.redisdockerizer.caching.caching.model.BookEntity;
+import com.redisdockerizer.caching.caching.service.CacheService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

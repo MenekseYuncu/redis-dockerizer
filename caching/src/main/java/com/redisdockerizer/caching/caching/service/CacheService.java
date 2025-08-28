@@ -1,6 +1,6 @@
-package com.integration.redisdockerizer.caching.service;
+package com.redisdockerizer.caching.caching.service;
 
-import com.integration.redisdockerizer.caching.model.BookEntity;
+import com.redisdockerizer.caching.caching.model.BookEntity;
 import jakarta.annotation.PostConstruct;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;

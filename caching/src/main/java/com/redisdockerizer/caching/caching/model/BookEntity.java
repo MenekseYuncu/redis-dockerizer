@@ -1,4 +1,4 @@
-package com.integration.redisdockerizer.caching.model;
+package com.redisdockerizer.caching.caching.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
