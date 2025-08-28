@@ -13,9 +13,17 @@ spring:
       host: ${REDIS_HOST:localhost} # Redis host (default: localhost if not set)
       port: ${REDIS_PORT:6379}      # Redis port (default: 6379 if not set)
       password: ${REDIS_PASSWORD:password}  # Redis password (default: 'password' if not set)
-      ssl-enabled: false            # SSL connection for Redis (false for local setups, true for cloud like AWS ElastiCache)
-      timeout: 60000                # Redis connection timeout in milliseconds (updated to 60000ms)
+      ssl-enabled: true            # SSL connection for Redis (true for security)
+      timeout: 30000                # Redis connection timeout in milliseconds (reduced for security)
       database: 0                   # Redis database (default is 0)
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+
+  security:
+    enabled: true
 
 info:
   application:
