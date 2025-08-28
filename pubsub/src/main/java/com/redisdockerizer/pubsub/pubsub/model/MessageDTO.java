@@ -1,4 +1,4 @@
-package com.integration.redisdockerizer.pubsub.model;
+package com.redisdockerizer.pubsub.pubsub.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

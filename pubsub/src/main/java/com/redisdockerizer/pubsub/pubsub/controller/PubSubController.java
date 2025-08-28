@@ -1,8 +1,8 @@
-package com.integration.redisdockerizer.pubsub.controller;
+package com.redisdockerizer.pubsub.pubsub.controller;
 
-import com.integration.redisdockerizer.pubsub.model.MessageDTO;
-import com.integration.redisdockerizer.pubsub.publisher.RedisPublisher;
-import com.integration.redisdockerizer.pubsub.subscriber.RedisSubscriber;
+import com.redisdockerizer.pubsub.pubsub.model.MessageDTO;
+import com.redisdockerizer.pubsub.pubsub.publisher.RedisPublisher;
+import com.redisdockerizer.pubsub.pubsub.subscriber.RedisSubscriber;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

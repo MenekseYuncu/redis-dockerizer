@@ -1,4 +1,4 @@
-package com.integration.redisdockerizer.pubsub.config;
+package com.redisdockerizer.pubsub.pubsub.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

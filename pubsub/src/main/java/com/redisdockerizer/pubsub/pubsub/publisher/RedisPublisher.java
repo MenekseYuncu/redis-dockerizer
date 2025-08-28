@@ -1,8 +1,8 @@
-package com.integration.redisdockerizer.pubsub.publisher;
+package com.redisdockerizer.pubsub.pubsub.publisher;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.integration.redisdockerizer.pubsub.model.MessageDTO;
+import com.redisdockerizer.pubsub.pubsub.model.MessageDTO;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
