@@ -1,4 +1,4 @@
-package com.integration.redisdockerizer.keymanagement.config;
+package com.redisdockerizer.keymanagement.keymanagement.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

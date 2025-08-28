@@ -1,4 +1,4 @@
-package com.integration.redisdockerizer.keymanagement.service;
+package com.redisdockerizer.keymanagement.keymanagement.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;

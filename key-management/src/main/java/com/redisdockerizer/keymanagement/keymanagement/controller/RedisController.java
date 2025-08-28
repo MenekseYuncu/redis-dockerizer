@@ -1,6 +1,6 @@
-package com.integration.redisdockerizer.keymanagement.controller;
+package com.redisdockerizer.keymanagement.keymanagement.controller;
 
-import com.integration.redisdockerizer.keymanagement.service.RedisService;
+import com.redisdockerizer.keymanagement.keymanagement.service.RedisService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
