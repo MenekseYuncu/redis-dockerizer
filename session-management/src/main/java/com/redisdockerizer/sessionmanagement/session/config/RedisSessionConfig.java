@@ -1,4 +1,4 @@
-package com.integration.redisdockerizer.session.config;
+package com.redisdockerizer.sessionmanagement.session.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,6 +1,6 @@
-package com.integration.redisdockerizer.session.controller;
+package com.redisdockerizer.sessionmanagement.session.controller;
 
-import com.integration.redisdockerizer.session.service.OnlineUserService;
+import com.redisdockerizer.sessionmanagement.session.service.OnlineUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

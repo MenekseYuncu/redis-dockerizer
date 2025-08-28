@@ -1,4 +1,4 @@
-package com.integration.redisdockerizer.session.user;
+package com.redisdockerizer.sessionmanagement.session.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

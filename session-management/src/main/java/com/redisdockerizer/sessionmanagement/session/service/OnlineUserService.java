@@ -1,4 +1,4 @@
-package com.integration.redisdockerizer.session.service;
+package com.redisdockerizer.sessionmanagement.session.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
