@@ -1,9 +1,10 @@
-package com.redisdockerizer.keymanagement.keymanagement.controller;
+package com.integration.redisdockerizer.keymanagement.controller;
 
-import com.redisdockerizer.keymanagement.keymanagement.service.RedisService;
+import com.integration.redisdockerizer.keymanagement.service.RedisService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.util.StringUtils;
 
 import java.util.Set;
 
@@ -27,6 +28,16 @@ public class RedisController {
      */
     @PostMapping("/set")
     public ResponseEntity<String> set(@RequestParam String key, @RequestParam String value) {
+        // Input validation
+        if (!StringUtils.hasText(key) || !StringUtils.hasText(value)) {
+            return ResponseEntity.badRequest().body("Key and value cannot be empty");
+        }
+        
+        // Key length validation
+        if (key.length() > 1000 || value.length() > 10000) {
+            return ResponseEntity.badRequest().body("Key or value too long");
+        }
+        
         redisService.set(key, value);
         return ResponseEntity.ok("Key set successfully: " + key);
     }
@@ -40,6 +51,11 @@ public class RedisController {
      */
     @GetMapping("/get/{key}")
     public ResponseEntity<String> get(@PathVariable String key) {
+        // Input validation
+        if (!StringUtils.hasText(key)) {
+            return ResponseEntity.badRequest().body("Key cannot be empty");
+        }
+        
         String value = redisService.get(key);
         return value != null ? ResponseEntity.ok(value) : ResponseEntity.notFound().build();
     }
@@ -53,6 +69,11 @@ public class RedisController {
      */
     @DeleteMapping("/del/{key}")
     public ResponseEntity<String> delete(@PathVariable String key) {
+        // Input validation
+        if (!StringUtils.hasText(key)) {
+            return ResponseEntity.badRequest().body("Key cannot be empty");
+        }
+        
         Boolean deleted = redisService.delete(key);
         return Boolean.TRUE.equals(deleted)
                 ? ResponseEntity.ok("Key deleted: " + key)
@@ -81,6 +102,16 @@ public class RedisController {
      */
     @PostMapping("/expire/{key}")
     public ResponseEntity<String> expire(@PathVariable String key, @RequestParam long seconds) {
+        // Input validation
+        if (!StringUtils.hasText(key)) {
+            return ResponseEntity.badRequest().body("Key cannot be empty");
+        }
+        
+        // TTL validation
+        if (seconds <= 0 || seconds > 31536000) { // Max 1 year
+            return ResponseEntity.badRequest().body("TTL must be between 1 and 31536000 seconds");
+        }
+        
         Boolean result = redisService.expire(key, seconds);
         return Boolean.TRUE.equals(result)
                 ? ResponseEntity.ok("TTL set for key: " + key + " (" + seconds + "s)")
