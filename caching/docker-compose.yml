@@ -13,3 +13,7 @@ services:
 
 volumes:
   redis-data:   # Volume for Redis persistence
+
+networks:
+  cache-network:
+    driver: bridge

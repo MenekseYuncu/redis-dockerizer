@@ -9,25 +9,16 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
         </processorPath>
-        <module name="caching" />
-        <module name="RedisDockerizer" />
-      </profile>
-      <profile name="Annotation profile for session-management" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
-        </processorPath>
-        <module name="key-management" />
         <module name="session-management" />
+        <module name="key-management" />
+        <module name="caching" />
         <module name="pubsub" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="RedisCache" target="24" />
+      <module name="RedisDockerizer" target="24" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
