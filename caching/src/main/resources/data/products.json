@@ -1,0 +1,702 @@
+[
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "name": "iPhone 15 Pro",
+    "category": "electronics",
+    "price": 999.99,
+    "description": "The latest Apple iPhone model"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440001",
+    "name": "Samsung Galaxy S23",
+    "category": "electronics",
+    "price": 899.99,
+    "description": "Powerful Android phone"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440002",
+    "name": "MacBook Pro 16",
+    "category": "electronics",
+    "price": 2499.99,
+    "description": "Professional laptop"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440003",
+    "name": "Dell XPS 13",
+    "category": "electronics",
+    "price": 1299.99,
+    "description": "Ultra-thin laptop"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440004",
+    "name": "Sony WH-1000XM5",
+    "category": "electronics",
+    "price": 349.99,
+    "description": "Noise-cancelling headphones"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440005",
+    "name": "iPad Air",
+    "category": "electronics",
+    "price": 599.99,
+    "description": "Powerful tablet"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440006",
+    "name": "Apple Watch Series 9",
+    "category": "electronics",
+    "price": 399.99,
+    "description": "Smartwatch"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440007",
+    "name": "PlayStation 5",
+    "category": "electronics",
+    "price": 499.99,
+    "description": "Game console"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440008",
+    "name": "Xbox Series X",
+    "category": "electronics",
+    "price": 499.99,
+    "description": "Game console"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440009",
+    "name": "Nintendo Switch",
+    "category": "electronics",
+    "price": 299.99,
+    "description": "Portable game console"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440010",
+    "name": "Canon EOS R5",
+    "category": "electronics",
+    "price": 3899.99,
+    "description": "Professional camera"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440011",
+    "name": "Sony A7IV",
+    "category": "electronics",
+    "price": 2499.99,
+    "description": "Mirrorless camera"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440012",
+    "name": "GoPro Hero 12",
+    "category": "electronics",
+    "price": 399.99,
+    "description": "Action camera"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440013",
+    "name": "Kindle Paperwhite",
+    "category": "electronics",
+    "price": 139.99,
+    "description": "E-book reader"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440014",
+    "name": "AirPods Pro",
+    "category": "electronics",
+    "price": 249.99,
+    "description": "Wireless earbuds"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440015",
+    "name": "Samsung Smart TV",
+    "category": "electronics",
+    "price": 799.99,
+    "description": "4K smart TV"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440016",
+    "name": "LG OLED TV",
+    "category": "electronics",
+    "price": 1299.99,
+    "description": "OLED TV"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440017",
+    "name": "Bose Soundbar",
+    "category": "electronics",
+    "price": 899.99,
+    "description": "Sound system"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440018",
+    "name": "DJI Mavic 3",
+    "category": "electronics",
+    "price": 2199.99,
+    "description": "Drone"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440019",
+    "name": "iPad Pro",
+    "category": "electronics",
+    "price": 1099.99,
+    "description": "Professional tablet"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440020",
+    "name": "Spring in Action",
+    "category": "books",
+    "price": 49.99,
+    "description": "Spring Framework book"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440021",
+    "name": "Clean Code",
+    "category": "books",
+    "price": 39.99,
+    "description": "Software quality book"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440022",
+    "name": "Design Patterns",
+    "category": "books",
+    "price": 59.99,
+    "description": "Design patterns book"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440023",
+    "name": "Effective Java",
+    "category": "books",
+    "price": 44.99,
+    "description": "Java programming book"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440024",
+    "name": "The Pragmatic Programmer",
+    "category": "books",
+    "price": 37.99,
+    "description": "Software development book"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440025",
+    "name": "Introduction to Algorithms",
+    "category": "books",
+    "price": 89.99,
+    "description": "Algorithms book"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440026",
+    "name": "Domain-Driven Design",
+    "category": "books",
+    "price": 52.99,
+    "description": "Software design book"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440027",
+    "name": "Refactoring",
+    "category": "books",
+    "price": 47.99,
+    "description": "Code refactoring book"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440028",
+    "name": "The Clean Coder",
+    "category": "books",
+    "price": 35.99,
+    "description": "Professional software development book"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440029",
+    "name": "You Don't Know JS",
+    "category": "books",
+    "price": 29.99,
+    "description": "JavaScript book"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440030",
+    "name": "Coffee Grinder",
+    "category": "home",
+    "price": 89.99,
+    "description": "Coffee grinder"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440031",
+    "name": "Blender",
+    "category": "home",
+    "price": 129.99,
+    "description": "Kitchen blender"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440032",
+    "name": "Toaster",
+    "category": "home",
+    "price": 49.99,
+    "description": "Toaster"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440033",
+    "name": "Microwave Oven",
+    "category": "home",
+    "price": 199.99,
+    "description": "Microwave oven"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440034",
+    "name": "Air Fryer",
+    "category": "home",
+    "price": 149.99,
+    "description": "Air fryer"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440035",
+    "name": "Stand Mixer",
+    "category": "home",
+    "price": 399.99,
+    "description": "Stand mixer"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440036",
+    "name": "Food Processor",
+    "category": "home",
+    "price": 179.99,
+    "description": "Food processor"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440037",
+    "name": "Vacuum Cleaner",
+    "category": "home",
+    "price": 299.99,
+    "description": "Vacuum cleaner"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440038",
+    "name": "Robot Vacuum",
+    "category": "home",
+    "price": 499.99,
+    "description": "Robot vacuum"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440039",
+    "name": "Air Purifier",
+    "category": "home",
+    "price": 249.99,
+    "description": "Air purifier"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440040",
+    "name": "Desk Lamp",
+    "category": "home",
+    "price": 59.99,
+    "description": "Desk lamp"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440041",
+    "name": "Smart Thermostat",
+    "category": "home",
+    "price": 199.99,
+    "description": "Smart thermostat"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440042",
+    "name": "Security Camera",
+    "category": "home",
+    "price": 129.99,
+    "description": "Security camera"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440043",
+    "name": "Smart Lock",
+    "category": "home",
+    "price": 249.99,
+    "description": "Smart lock"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440044",
+    "name": "Water Filter",
+    "category": "home",
+    "price": 89.99,
+    "description": "Water filter"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440045",
+    "name": "Building Blocks",
+    "category": "toys",
+    "price": 29.99,
+    "description": "Building blocks"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440046",
+    "name": "Remote Car",
+    "category": "toys",
+    "price": 49.99,
+    "description": "Remote-controlled car"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440047",
+    "name": "Drone Toy",
+    "category": "toys",
+    "price": 79.99,
+    "description": "Toy drone"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440048",
+    "name": "Lego Set",
+    "category": "toys",
+    "price": 89.99,
+    "description": "LEGO building set"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440049",
+    "name": "Puzzle",
+    "category": "toys",
+    "price": 19.99,
+    "description": "Puzzle"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440050",
+    "name": "Board Game",
+    "category": "toys",
+    "price": 39.99,
+    "description": "Board game"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440051",
+    "name": "Doll House",
+    "category": "toys",
+    "price": 69.99,
+    "description": "Dollhouse"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440052",
+    "name": "Action Figure",
+    "category": "toys",
+    "price": 24.99,
+    "description": "Action figure"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440053",
+    "name": "Teddy Bear",
+    "category": "toys",
+    "price": 34.99,
+    "description": "Teddy bear"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440054",
+    "name": "Science Kit",
+    "category": "toys",
+    "price": 59.99,
+    "description": "Science kit"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440055",
+    "name": "Art Set",
+    "category": "toys",
+    "price": 29.99,
+    "description": "Art set"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440056",
+    "name": "Basketball",
+    "category": "sports",
+    "price": 39.99,
+    "description": "Basketball"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440057",
+    "name": "Soccer Ball",
+    "category": "sports",
+    "price": 29.99,
+    "description": "Soccer ball"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440058",
+    "name": "Yoga Mat",
+    "category": "sports",
+    "price": 49.99,
+    "description": "Yoga mat"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440059",
+    "name": "Dumbbell Set",
+    "category": "sports",
+    "price": 149.99,
+    "description": "Dumbbell set"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440060",
+    "name": "Running Shoes",
+    "category": "sports",
+    "price": 129.99,
+    "description": "Running shoes"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440061",
+    "name": "Tennis Racket",
+    "category": "sports",
+    "price": 89.99,
+    "description": "Tennis racket"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440062",
+    "name": "Bicycle",
+    "category": "sports",
+    "price": 499.99,
+    "description": "Bicycle"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440063",
+    "name": "Treadmill",
+    "category": "sports",
+    "price": 899.99,
+    "description": "Treadmill"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440064",
+    "name": "Swimming Goggles",
+    "category": "sports",
+    "price": 24.99,
+    "description": "Swimming goggles"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440065",
+    "name": "Camping Tent",
+    "category": "sports",
+    "price": 199.99,
+    "description": "Camping tent"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440066",
+    "name": "Hiking Backpack",
+    "category": "sports",
+    "price": 129.99,
+    "description": "Hiking backpack"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440067",
+    "name": "Fishing Rod",
+    "category": "sports",
+    "price": 79.99,
+    "description": "Fishing rod"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440068",
+    "name": "Golf Clubs",
+    "category": "sports",
+    "price": 399.99,
+    "description": "Golf clubs"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440069",
+    "name": "Skateboard",
+    "category": "sports",
+    "price": 89.99,
+    "description": "Skateboard"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440070",
+    "name": "Wireless Mouse",
+    "category": "electronics",
+    "price": 59.99,
+    "description": "Wireless mouse"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440071",
+    "name": "Mechanical Keyboard",
+    "category": "electronics",
+    "price": 129.99,
+    "description": "Mechanical keyboard"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440072",
+    "name": "Webcam",
+    "category": "electronics",
+    "price": 79.99,
+    "description": "Webcam"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440073",
+    "name": "External SSD",
+    "category": "electronics",
+    "price": 149.99,
+    "description": "External SSD drive"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440074",
+    "name": "USB-C Hub",
+    "category": "electronics",
+    "price": 89.99,
+    "description": "USB-C hub"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440075",
+    "name": "Monitor",
+    "category": "electronics",
+    "price": 299.99,
+    "description": "Computer monitor"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440076",
+    "name": "Printer",
+    "category": "electronics",
+    "price": 199.99,
+    "description": "Printer"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440077",
+    "name": "Scanner",
+    "category": "electronics",
+    "price": 149.99,
+    "description": "Scanner"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440078",
+    "name": "Graphics Tablet",
+    "category": "electronics",
+    "price": 299.99,
+    "description": "Graphics tablet"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440079",
+    "name": "VR Headset",
+    "category": "electronics",
+    "price": 399.99,
+    "description": "Virtual reality headset"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440080",
+    "name": "Smart Speaker",
+    "category": "electronics",
+    "price": 129.99,
+    "description": "Smart speaker"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440081",
+    "name": "Streaming Device",
+    "category": "electronics",
+    "price": 49.99,
+    "description": "Streaming device"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440082",
+    "name": "Network Router",
+    "category": "electronics",
+    "price": 199.99,
+    "description": "Network router"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440083",
+    "name": "Wireless Earbuds",
+    "category": "electronics",
+    "price": 149.99,
+    "description": "Wireless earbuds"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440084",
+    "name": "Power Bank",
+    "category": "electronics",
+    "price": 79.99,
+    "description": "Portable charger"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440085",
+    "name": "Smart Light Bulb",
+    "category": "electronics",
+    "price": 29.99,
+    "description": "Smart light bulb"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440086",
+    "name": "Home Assistant",
+    "category": "electronics",
+    "price": 99.99,
+    "description": "Smart home assistant"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440087",
+    "name": "Digital Photo Frame",
+    "category": "electronics",
+    "price": 129.99,
+    "description": "Digital photo frame"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440088",
+    "name": "E-reader Case",
+    "category": "electronics",
+    "price": 39.99,
+    "description": "E-reader case"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440089",
+    "name": "Laptop Stand",
+    "category": "electronics",
+    "price": 59.99,
+    "description": "Laptop stand"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440090",
+    "name": "Monitor Arm",
+    "category": "electronics",
+    "price": 119.99,
+    "description": "Monitor arm"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440091",
+    "name": "Desk Organizer",
+    "category": "electronics",
+    "price": 34.99,
+    "description": "Desk organizer"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440092",
+    "name": "Cable Management",
+    "category": "electronics",
+    "price": 19.99,
+    "description": "Cable management kit"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440093",
+    "name": "USB Flash Drive",
+    "category": "electronics",
+    "price": 24.99,
+    "description": "USB flash drive"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440094",
+    "name": "Memory Card",
+    "category": "electronics",
+    "price": 49.99,
+    "description": "Memory card"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440095",
+    "name": "External HDD",
+    "category": "electronics",
+    "price": 89.99,
+    "description": "External hard drive"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440096",
+    "name": "Network Switch",
+    "category": "electronics",
+    "price": 79.99,
+    "description": "Network switch"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440097",
+    "name": "Wireless Adapter",
+    "category": "electronics",
+    "price": 39.99,
+    "description": "Wireless adapter"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440098",
+    "name": "Bluetooth Receiver",
+    "category": "electronics",
+    "price": 29.99,
+    "description": "Bluetooth receiver"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440099",
+    "name": "HDMI Cable",
+    "category": "electronics",
+    "price": 19.99,
+    "description": "HDMI cable"
+  }
+]

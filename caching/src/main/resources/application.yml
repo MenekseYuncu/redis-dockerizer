@@ -1,29 +1,41 @@
 server:
-  port: 8082 # Port where the Spring Boot application will run (default: 8080)
+  port: 8082 # The HTTP port where the Spring Boot application will run (default is 8080)
 
 spring:
   session:
-    store-type: redis # Store HTTP session data in Redis (for distributed sessions)
+    store-type: redis # Persist HTTP session data in Redis (useful for distributed session management across multiple instances)
 
   cache:
-    type: redis
+    type: redis # Enable Spring Cache with Redis as the underlying provider
 
   data:
     redis:
-      host: ${REDIS_HOST:localhost} # Redis host (default: localhost if not set)
-      port: ${REDIS_PORT:6379}      # Redis port (default: 6379 if not set)
-      password: ${REDIS_PASSWORD:password}  # Redis password (default: 'password' if not set)
-      ssl-enabled: false            # SSL connection for Redis (false for local setups, true for cloud like AWS ElastiCache)
-      timeout: 60000                # Redis connection timeout in milliseconds (updated to 60000ms)
-      database: 0                   # Redis database (default is 0)
+      host: ${REDIS_HOST:localhost}   # Redis host (defaults to 'localhost' if REDIS_HOST env variable is not set)
+      port: ${REDIS_PORT:6379}        # Redis port (defaults to 6379 if REDIS_PORT env variable is not set)
+      password: ${REDIS_PASSWORD:password} # Redis password (defaults to 'password' if REDIS_PASSWORD env variable is not set)
+      timeout: 2000ms                 # Connection timeout (2 seconds)
+      lettuce:
+        pool:
+          max-active: 8 # Maximum number of active connections in the pool
+          max-idle: 8   # Maximum number of idle connections in the pool
+          min-idle: 0   # Minimum number of idle connections to keep in the pool
+
+  # Cache configuration
+    cache:
+      type: redis
+      redis:
+        key-prefix: "demo:"     # Prefix added to all cache keys stored in Redis (helps avoid collisions with other apps)
+        time-to-live: 60000     # Default TTL (Time To Live) for cache entries in milliseconds (60 seconds)
 
 info:
   application:
-    name: '@project.name@'        # Application name from project metadata
-    description: '@project.description@' # Application description from project metadata
-    version: '@project.version@'  # Application version from project metadata
+    name: '@project.name@'         # Application name (injected from Maven/Gradle project metadata)
+    description: '@project.description@' # Application description (from project metadata)
+    version: '@project.version@'   # Application version (from project metadata)
 
 logging:
   level:
-    com.example.redispubsub: DEBUG
-    org.springframework.data.redis: DEBUG
+    com.example.caching: INFO         # Log level for the application package
+    org.springframework.cache: DEBUG  # Enable DEBUG logging for Spring Cache (useful to observe cache hits/misses)
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" # Custom console log format
