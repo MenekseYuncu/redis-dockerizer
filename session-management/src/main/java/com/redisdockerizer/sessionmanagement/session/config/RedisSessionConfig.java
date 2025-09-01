@@ -4,31 +4,20 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+
 
 /**
- * RedisSessionConfig class provides the configuration for Redis-based session management.
- * It enables the usage of Redis to store and manage HTTP session data in a Spring Boot application.
+ * The RedisSessionConfig class is a Spring Configuration class that defines beans for managing
+ * Redis-based HTTP session data. It sets up customized Redis templates for interacting with
+ * Redis to store session-related keys and values. The configuration relies on Spring's
+ * {@link RedisConnectionFactory} to establish a connection to the Redis server.
  * <p>
- * The class is annotated with {@link EnableRedisHttpSession}, which ensures that Spring Session will use Redis
- * to store session data instead of the default in-memory session storage.
- * </p>
- *
- * <p>
- * This configuration provides a RedisTemplate configured for session storage, where both keys and values are serialized as strings.
- * This RedisTemplate is used by the Spring Session mechanism to store and retrieve session-related data from Redis.
- * </p>
- *
- * <p><b>Key Features:</b></p>
- * <ul>
- *     <li>Enables Redis as the store for HTTP sessions using Spring Session.</li>
- *     <li>Configures a RedisTemplate that serializes session data as strings.</li>
- *     <li>Supports TTL (Time-To-Live) for session expiration, managed by Redis.</li>
- * </ul>
+ * The beans in this configuration ensure that session data is serialized and deserialized
+ * appropriately for proper interaction with the Redis datastore.
  */
 @Configuration
-@EnableRedisHttpSession
 public class RedisSessionConfig {
 
 
@@ -55,11 +44,22 @@ public class RedisSessionConfig {
         RedisTemplate<String, String> template = new RedisTemplate<>();
 
         template.setConnectionFactory(connectionFactory);
-
         template.setKeySerializer(new StringRedisSerializer());
-
         template.setValueSerializer(new StringRedisSerializer());
-
+        template.setHashKeySerializer(new StringRedisSerializer());
+        template.setHashValueSerializer(new StringRedisSerializer());
         return template;
+    }
+
+    /**
+     * Configures and returns a {@link StringRedisTemplate} bean for interacting with Redis.
+     * This template provides a convenient way to work with Redis data using String keys and values.
+     *
+     * @param connectionFactory the Redis connection factory used to establish a connection to the Redis server.
+     * @return a configured {@link StringRedisTemplate} instance for string-based Redis operations.
+     */
+    @Bean
+    public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory connectionFactory) {
+        return new StringRedisTemplate(connectionFactory);
     }
 }
