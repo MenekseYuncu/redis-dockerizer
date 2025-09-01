@@ -21,16 +21,10 @@
         <!--   Core Spring Boot Dependencies -->
         <!-- ======================================================= -->
 
-        <!--     For building REST APIs   -->
+        <!-- For building REST APIs -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!--   For JSON data binding -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
         </dependency>
 
         <!-- For caching support -->
@@ -45,20 +39,26 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
+        <!-- For validation (Jakarta Bean Validation) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <!-- For Java Time (JSR-310) JSON support -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+
         <!-- ======================================================= -->
-        <!--  ️ Redis Dependencies -->
+        <!--  Redis Dependencies -->
         <!-- ======================================================= -->
 
-        <!-- For Redis integration with Spring Data -->
+        <!-- Spring Data Redis integration -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-
-        <!-- Lettuce Redis client (async, scalable) -->
-        <dependency>
-            <groupId>io.lettuce</groupId>
-            <artifactId>lettuce-core</artifactId>
         </dependency>
 
         <!-- For managing user sessions in Redis -->
@@ -79,7 +79,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- For reducing boilerplate code -->
+        <!-- Lombok for boilerplate reduction -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
