@@ -14,8 +14,14 @@ spring:
       port: ${REDIS_PORT:6379}      # Redis port (default: 6379 if not set)
       password: ${REDIS_PASSWORD:password}  # Redis password (default: 'password' if not set)
       ssl-enabled: false            # SSL connection for Redis (false for local setups, true for cloud like AWS ElastiCache)
-      timeout: 60000                # Redis connection timeout in milliseconds (updated to 60000ms)
+      timeout: 2000ms                # Redis connection timeout in milliseconds (updated to 2000ms)
       database: 0                   # Redis database (default is 0)
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    deserialization:
+      adjust-dates-to-context-time-zone: false
 
 info:
   application:
