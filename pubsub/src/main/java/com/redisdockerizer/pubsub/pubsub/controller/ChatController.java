@@ -49,8 +49,8 @@ public class ChatController {
      */
     @PostMapping("/messages")
     public String publishMessage(@RequestBody PublishMessageRequest request) {
-        redisPublisher.publishRequest(request.getChannel(), request);
-        return "Message published to " + request.getChannel();
+        redisPublisher.publishRequest(request.channel(), request);
+        return "Message published to " + request.channel();
     }
 
 
@@ -82,7 +82,7 @@ public class ChatController {
      */
     @PostMapping("/messages/batch")
     public String publishBatchMessages(@RequestBody List<PublishMessageRequest> requests) {
-        requests.forEach(req -> redisPublisher.publishRequest(req.getChannel(), req));
+        requests.forEach(req -> redisPublisher.publishRequest(req.channel(), req));
         return requests.size() + " messages published.";
     }
 

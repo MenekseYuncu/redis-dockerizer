@@ -105,9 +105,9 @@ public class RedisPublisher {
         String room = extractRoomFromChannel(normalizeChannel(channel));
         return Message.builder()
                 .id("msg-" + UUID.randomUUID().toString().substring(0, 8))
-                .user(request.getUser())
+                .user(request.user())
                 .room(room)
-                .text(request.getText())
+                .text(request.text())
                 .type("text")
                 .timestamp(Instant.now())
                 .status("delivered")

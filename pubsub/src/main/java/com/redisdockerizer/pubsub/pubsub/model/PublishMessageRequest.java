@@ -1,24 +1,20 @@
 package com.redisdockerizer.pubsub.pubsub.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 /**
- * Represents a request object for publishing a message in a Pub/Sub system.
- * This class encapsulates the necessary data required to publish a message to a specific channel
- * by a specific user along with the message content.
+ * Represents a request to publish a message to a specific channel in a Pub/Sub system.
+ * This class encapsulates the essential details required to publish a message, including:
  * <p>
- * Fields:
- * - channel: Specifies the target channel where the message will be published.
- * - user: Identifies the user initiating the message publication.
- * - Text: Contains the actual message content to be published.
+ * - channel: The name of the channel where the message should be published.
+ * - user: The identifier of the user who is sending the message.
+ * - text: The text content of the message to be published.
+ * <p>
+ * This record is intended to be used as a data transfer object (DTO) for facilitating
+ * the publication of messages via a Pub/Sub system.
  */
-@Getter
-@Setter
-public class PublishMessageRequest {
-
-    private String channel;
-    private String user;
-    private String text;
+public record PublishMessageRequest(
+        String channel,
+        String user,
+        String text
+) {
 
 }
