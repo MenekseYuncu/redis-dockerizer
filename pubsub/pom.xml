@@ -14,7 +14,7 @@
     <name>pubsub</name>
     <description>pubsub</description>
     <properties>
-        <java.version>21</java.version>
+        <java.version>24</java.version>
     </properties>
     <dependencies>
         <!-- ======================================================= -->
@@ -65,6 +65,11 @@
         <dependency>
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session-data-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
 
         <!-- ======================================================= -->
