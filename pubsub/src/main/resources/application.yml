@@ -5,25 +5,30 @@ spring:
   session:
     store-type: redis # Store HTTP session data in Redis (for distributed sessions)
 
-  cache:
-    type: redis
-
   data:
     redis:
-      host: ${REDIS_HOST:localhost} # Redis host (default: localhost if not set)
-      port: ${REDIS_PORT:6379}      # Redis port (default: 6379 if not set)
-      password: ${REDIS_PASSWORD:password}  # Redis password (default: 'password' if not set)
-      ssl-enabled: false            # SSL connection for Redis (false for local setups, true for cloud like AWS ElastiCache)
-      timeout: 60000                # Redis connection timeout in milliseconds (updated to 60000ms)
-      database: 0                   # Redis database (default is 0)
+      host: ${REDIS_HOST:localhost}   # Redis host (default: localhost)
+      port: ${REDIS_PORT:6379}        # Redis port (default: 6379)
+      password: ${REDIS_PASSWORD:password} # Redis password (default: password)
+      ssl-enabled: false              # Enable SSL for Redis (false for local, true for cloud services like AWS ElastiCache)
+      timeout: 60000                  # Connection timeout in milliseconds
+      database: 0                     # Redis database index (default: 0)
+
+app:
+  defaultRoom: general                # Default chat room
+  channelPrefix: demo.chat.           # Prefix for all chat channels
+  wildcard: demo.chat.*               # Wildcard pattern for channel subscriptions
+  startup:
+    replayOnStart: true               # Publish messages.json on application startup
+    resource: classpath:data/messages.json # Path to the startup messages JSON file
 
 info:
   application:
-    name: '@project.name@'        # Application name from project metadata
+    name: '@project.name@'            # Application name from project metadata
     description: '@project.description@' # Application description from project metadata
-    version: '@project.version@'  # Application version from project metadata
+    version: '@project.version@'      # Application version from project metadata
 
 logging:
   level:
-    com.example.redispubsub: DEBUG
-    org.springframework.data.redis: DEBUG
+    com.example.redispubsub: DEBUG          # Logging level for application classes
+    org.springframework.data.redis: DEBUG   # Logging level for Spring Data Redis
