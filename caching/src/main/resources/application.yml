@@ -25,7 +25,7 @@ spring:
       type: redis
       redis:
         key-prefix: "demo:"     # Prefix added to all cache keys stored in Redis (helps avoid collisions with other apps)
-        time-to-live: 60000     # Default TTL (Time To Live) for cache entries in milliseconds (60 seconds)
+        time-to-live: 10m     # Default TTL (Time To Live) for cache entries in milliseconds (10 minute)
 
 info:
   application:
