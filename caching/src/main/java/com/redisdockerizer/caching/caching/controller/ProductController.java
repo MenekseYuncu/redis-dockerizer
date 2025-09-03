@@ -5,6 +5,7 @@ import com.redisdockerizer.caching.caching.model.Product;
 import com.redisdockerizer.caching.caching.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -84,6 +85,7 @@ public class ProductController {
      * @return the persisted product.
      */
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Product createProduct(@Valid @RequestBody Product product) {
         product.setId(null);
         return productService.create(product);
