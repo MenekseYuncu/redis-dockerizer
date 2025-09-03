@@ -72,7 +72,7 @@ Redis will be available on `localhost:6379`.
 ./mvnw spring-boot:run
 ```
 
-The service starts on the port defined in `application.yml` (e.g., `8082`).
+The service starts on the port defined in `application.yml` (e.g., `8085`).
 
 ---
 
@@ -89,7 +89,7 @@ spring:
       timeout: 60s
 
 server:
-  port: 8082
+  port: 8085
 
 logging:
   level:
@@ -136,36 +136,36 @@ logging:
 ### Postman Collection
 
 1. Import the Postman collection from: [Postman Collection](https://www.postman.com/menekse-3683/workspace/redis-dockerizer/folder/24190370-315916a0-2ce1-46c6-ab27-6a8648b7c27f?action=share&source=copy-link&creator=24190370)
-2. Set the base URL to `http://localhost:8082`
+2. Set the base URL to `http://localhost:8085`
 3. Explore all available endpoints
 
 
 ### Postman / cURL
 
-Base URL example: `http://localhost:8082` (adjust to your config).
+Base URL example: `http://localhost:8085` (adjust to your config).
 
 #### 1) List all users
 
 ```bash
-curl http://localhost:8082/api/users
+curl http://localhost:8085/api/users
 ```
 
 #### 2) List online users
 
 ```bash
-curl http://localhost:8082/api/sessions/online
+curl http://localhost:8085/api/sessions/online
 ```
 
 #### 3) List offline users
 
 ```bash
-curl http://localhost:8082/api/sessions/offline
+curl http://localhost:8085/api/sessions/offline
 ```
 
 #### 4) Session stats
 
 ```bash
-curl http://localhost:8082/api/sessions/stats
+curl http://localhost:8085/api/sessions/stats
 ```
 
 **Sample Response (example fields):**
@@ -182,7 +182,7 @@ curl http://localhost:8082/api/sessions/stats
 #### 5) Set user online
 
 ```bash
-curl -X POST http://localhost:8082/api/sessions/<UserId>/online
+curl -X POST http://localhost:8085/api/sessions/<UserId>/online
 ```
 
 **Sample Response (example fields):**
@@ -200,7 +200,7 @@ curl -X POST http://localhost:8082/api/sessions/<UserId>/online
 #### 6) Set user offline
 
 ```bash
-curl -X POST http://localhost:8082/api/sessions/<UserId>/offline
+curl -X POST http://localhost:8085/api/sessions/<UserId>/offline
 ```
 
 **Sample Response:**
@@ -217,7 +217,7 @@ curl -X POST http://localhost:8082/api/sessions/<UserId>/offline
 #### 7) Refresh TTL
 
 ```bash
-curl -X POST http://localhost:8082/api/sessions/<UserId>/refresh-ttl
+curl -X POST http://localhost:8085/api/sessions/<UserId>/refresh-ttl
 ```
 
 **Sample Response:**

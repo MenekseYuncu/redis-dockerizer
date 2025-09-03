@@ -1,165 +1,106 @@
-# Redis Dockerizer - Spring Boot Redis Integration
+# Redis Dockerizer – Spring Boot Redis Integration
 
-## Project Purpose
+## 🚀 Introduction
 
-This project provides **modular implementations of four essential Redis integration scenarios** with Spring Boot:
+**redis-dockerizer** is a modular suite of **Redis-powered Spring Boot** projects, each showcasing a different integration pattern with **Docker**.
+It can serve as both an educational playground and a starter template for real-world systems that need **speed, scalability, and simplicity**.
 
-1. **Cache Management** - Performance optimization by reducing database queries
-2. **Key Management** - Managing temporary data (tokens, OTP, etc.)
-3. **Pub/Sub** - Real-time messaging and event-driven architecture
-4. **Session Management** - Centralized session management in distributed systems
+---
 
-**Project Approach:** Each Redis use case is developed as a separate module. Developers can **clone the project and choose the specific module** they need to directly integrate into their own projects or use as reference for further development.
+## 📄 Content
 
-This approach allows you to start working with **only the module you need** without having to learn all Redis implementations.
+This repository currently includes four self-contained modules:
 
-## System Requirements
+* **Pub/Sub** — real-time messaging with channel fan-out
+* **Caching** — application-level caching for CRUD workloads
+* **Key Management** — login, validation, extension, and logout using Redis-backed sessions
+* **Session Management (Presence)** — online/offline tracking with TTL and session statistics
 
-- Java 17+
-- Maven 3.6+
-- Docker and Docker Compose
-- Postman (for API testing)
+Each module includes a Spring Boot application, Docker Compose configuration for Redis, and sample REST endpoints.
 
-## Installation Steps
+---
 
-### 1. Clone the Repository
+## 💬 How to Use
 
-```bash
-git clone https://github.com/MenekseYuncu/redis-dockerizer.git
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/MenekseYuncu/redis-dockerizer.git
+   cd redis-dockerizer
+   ```
+
+2. **Choose a module** (e.g., `pubsub`, `caching`, `key-management`, or `session-management`), then run:
+
+   ```bash
+   cd <module>
+   docker-compose up -d    # start Redis
+   ./mvnw spring-boot:run  # run the Spring Boot app
+   ```
+
+3. **Test the APIs** using cURL or Postman (see each module’s README for endpoints).
+
+4. **Customize** TTLs, cache names, key strategies, and security settings as needed.
+
+> **Requirements:** Java 21+, Maven 3.6+, Docker & Docker Compose
+
+---
+
+## 📦 Modules at a Glance
+
+| Module                                          | Purpose                               | Highlights                                                                      |
+| ----------------------------------------------- | ------------------------------------- | ------------------------------------------------------------------------------- |
+| [**pubsub/**](./pubsub)                         | Real-time messaging via Redis Pub/Sub | Channel-based publish/subscribe, REST publishers, logging & metrics subscribers |
+| [**caching/**](./caching)                       | Redis as a caching layer for CRUD     | `@Cacheable / @CachePut / @CacheEvict`, TTL, UUID `Product` API                 |
+| [**key-management/**](./key-management)         | Session keys & login lifecycle        | Login, validate, extend, logout, terminate-all, client IP capture               |
+| [**session-management/**](./session-management) | User presence (online/offline)        | Presence APIs, TTL refresh, session stats, user removal                         |
+
+---
+
+## 📂 Repository Structure
+
 ```
-```bash
-cd redis-dockerizer
+redis-dockerizer/
+├── caching/
+├── key-management/
+├── pubsub/
+├── session-management/
+└── README.md
 ```
 
-### 2. Start Redis Container
+---
 
-Run Redis using Docker Compose:
+## 📬 Import Postman Collection
 
-```bash
-docker-compose up -d
-```
+A complete Postman collection is available to test all modules’ APIs out of the box:
 
-This command will start Redis on `localhost:6379`.
-
-### 3. Install Maven Dependencies
-
-```bash
-./mvnw clean install
-```
-
-For Windows:
-```bash
-mvnw.cmd clean install
-```
-
-### 4. Start the Spring Boot Application
-
-```bash
-./mvnw spring-boot:run
-```
-
-The application will start running at `http://localhost:8082`.
-
-### 5. Import Postman Collection
-
-Use the prepared Postman collection to test API endpoints:
-
-**Postman Collection:** [POSTMAN COLLECTION URL](https://www.postman.com/menekse-3683/workspace/redis-dockerizer/collection/24190370-5f0f8ac6-13e0-4983-aa1a-d1fd770f2d3d?action=share&source=copy-link&creator=24190370)
-
-**Import Steps:**
 1. Open Postman
-2. Click "Import" button
-3. Select "Link" tab
-4. Paste the URL above
-5. Click "Continue" and "Import" buttons
+2. Import the collection using this link:
+   👉 [Redis-Dockerizer Postman Collection](https://www.postman.com/menekse-3683/workspace/redis-dockerizer/overview)
+3. Set the `baseUrl` variable according to the module you are running (e.g., `http://localhost:8082`, `http://localhost:8083`, etc.)
+4. Explore endpoints grouped by module (Pub/Sub, Caching, Key Management, Session Management).
 
-## Project Modules
+---
 
-### 1. Cache Management
-- **Purpose:** Reduce database load by storing frequently accessed data in memory
-- **Endpoints:**
-  - `GET /api/cache/{id}` - Retrieve book from cache by ID
-  - `POST /api/cache` - Create or update book in cache
-  - `DELETE /api/cache/{id}` - Delete book from cache
+## 📚 Articles & Guides
 
-### 2. Key Management
-- **Purpose:** Store temporary data using Redis key-value structure
-- **Endpoints:**
-  - `POST /api/redis/set` - Store key-value pair with TTL support
-  - `GET /api/redis/get/{key}` - Retrieve value by key
-  - `DELETE /api/redis/del/{key}` - Delete key from Redis
-  - `GET /api/redis/keys` - Get all keys (for debugging)
-  - `POST /api/redis/expire/{key}` - Set TTL for existing key
+* **(TR) Medium:** *Redis ve Spring Boot: Modern Uygulamalarda Performans ve Ölçeklenebilirlik Rehberi* — a comprehensive guide covering all modules.
+  👉 [Read the article](https://medium.com/@menekseyuncu/redis-ve-spring-boot-modern-uygulamalarda-performans-ve-%C3%B6l%C3%A7eklenebilirlik-rehberi-f97bb85b2044)
 
+---
 
-### 3. Pub/Sub
-- **Purpose:** Real-time messaging between services
-- **Endpoints:**
-  - `POST /api/pubsub/publish` - Publish structured message with sender info
-  - `POST /api/pubsub/publish/simple` - Publish simple string message
-  - `POST /api/pubsub/subscribe` - Subscribe to channel
-  - `POST /api/pubsub/unsubscribe` - Unsubscribe from channel
-  - `GET /api/pubsub/status` -  Check Pub/Sub service status
+## 🧑‍💻 Contributing
 
+1. Fork the repository
+2. Create a branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m "Add amazing feature"`)
+4. Push the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-### 4. Session Management
-- **Purpose:** Centrally manage user session information
-- **Endpoints:**
-  - `POST /api/session/login/{userId}` - Log in user and mark as online
-  - `POST /api/session/logout/{userId}` - Log out user and mark as offline
-  - `POST /api/session/refresh/{userId}` - Refresh user's online TTL
-  - `GET /api/session/status/{userId}` - Get user online status and last active time
-  - `GET /api/session/online` - Get all currently online users
+---
 
+## 🙌 Acknowledgements
 
-## Testing
+Thanks to everyone who has contributed to this repository.
 
-1. Ensure the application is running (`http://localhost:8082`)
-2. Verify Redis container is active (`docker ps`)
-3. Test endpoints sequentially using Postman collection
-4. Run example requests for each module
+Built with **Spring Boot**, **Spring Data Redis**, and **Docker**.
 
-## Project Structure
-
-```
-src/main/java/com/integration/redisdockerizer/
-├── caching/                    # Cache Management module
-├── keymanagement/              # Key Management module  
-├── pubsub/                     # Pub/Sub module
-├── session/                    # Session Management module(Online/Offline User)
-└── RedisDockerizerApplication.java
-```
-
-## Configuration
-
-Redis connection settings are defined in `src/main/resources/application.yml`:
-
-```yaml
-spring:
-  data:
-    redis:
-      host: localhost
-      port: 6379
-```
-
-## Technology Stack
-
-- Java 17
-- Spring Boot 3.x
-- Spring Data Redis
-- Redis 7.x
-- Docker & Docker Compose
-- Maven
-
-## Detailed Documentation
-
-For detailed explanations about Redis usage scenarios and Spring Boot integration covered in this project, you can read my Medium article (in Turkish):
-
-**Medium Article:** [Redis ve Spring Boot: Modern Uygulamalarda Performans ve Ölçeklenebilirlik Rehberi](https://medium.com/@menekseyuncu/redis-spring-boot-article)
-
-## Support
-
-For questions about the project:
-- You can use GitHub Issues
-- Review API documentation in Postman collection
-- Refer to detailed explanations in the Medium article

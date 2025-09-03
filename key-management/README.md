@@ -79,7 +79,7 @@ spring:
       timeout: 60s
 
 server:
-  port: 8082  # change as you prefer
+  port: 8083  # change as you prefer
 
 logging:
   level:
@@ -118,20 +118,20 @@ All endpoints are under the base path **`/api/sessions`**.
 ### Postman Collection
 
 1. Import the Postman collection from: [Postman Collection](https://www.postman.com/menekse-3683/workspace/redis-dockerizer/folder/24190370-bb3c4ae2-3e6b-4478-ad9b-6e197a4fbaff?action=share&source=copy-link&creator=24190370)
-2. Set the base URL to `http://localhost:8082`
+2. Set the base URL to `http://localhost:8083`
 3. Explore all available endpoints
 
 
 ### Postman / cURL
 
-> Replace `8082` with your configured port.
+> Replace `8083` with your configured port.
 
 #### 1) Login
 
 **Request**
 
 ```bash
-curl -X POST http://localhost:8082/api/sessions/login \
+curl -X POST http://localhost:8083/api/sessions/login \
   -H "Content-Type: application/json" \
   -d '{"username":"alice","password":"secret"}'
 ```
@@ -152,7 +152,7 @@ curl -X POST http://localhost:8082/api/sessions/login \
 #### 2) Get Session by ID
 
 ```bash
-curl http://localhost:8082/api/sessions/<SessionId>
+curl http://localhost:8083/api/sessions/<SessionId>
 ```
 **Sample Response**
 
@@ -173,7 +173,7 @@ curl http://localhost:8082/api/sessions/<SessionId>
 #### 3) Validate Session
 
 ```bash
-curl -X POST "http://localhost:8082/api/sessions/validate?sessionId=a1b2c3d4e5f6..."
+curl -X POST "http://localhost:8083/api/sessions/validate?sessionId=a1b2c3d4e5f6..."
 ```
 
 **Sample Response**
@@ -191,7 +191,7 @@ curl -X POST "http://localhost:8082/api/sessions/validate?sessionId=a1b2c3d4e5f6
 #### 4) Extend Session (default 30 minutes)
 
 ```bash
-curl -X PUT "http://localhost:8082/api/sessions/<SessionId>/extend?minutes=45"
+curl -X PUT "http://localhost:8083/api/sessions/<SessionId>/extend?minutes=45"
 ```
 
 **Sample Response**
@@ -207,7 +207,7 @@ curl -X PUT "http://localhost:8082/api/sessions/<SessionId>/extend?minutes=45"
 #### 5) Logout
 
 ```bash
-curl -X DELETE http://localhost:8082/api/sessions/<SessionId>/logout
+curl -X DELETE http://localhost:8083/api/sessions/<SessionId>/logout
 ```
 
 **Sample Response**
@@ -222,7 +222,7 @@ curl -X DELETE http://localhost:8082/api/sessions/<SessionId>/logout
 #### 6) List Active Sessions
 
 ```bash
-curl http://localhost:8082/api/sessions/active
+curl http://localhost:8083/api/sessions/active
 ```
 
 **Sample Response**
@@ -239,7 +239,7 @@ curl http://localhost:8082/api/sessions/active
 #### 7) Get User’s Sessions
 
 ```bash
-curl http://localhost:8082/api/sessions/user/<UserId>
+curl http://localhost:8083/api/sessions/user/<UserId>
 ```
 
 **Sample Response**
@@ -255,7 +255,7 @@ curl http://localhost:8082/api/sessions/user/<UserId>
 #### 8) Terminate All Sessions for a User
 
 ```bash
-curl -X DELETE http://localhost:8082/api/sessions/user/<UserId>/terminate-all
+curl -X DELETE http://localhost:8083/api/sessions/user/<UserId>/terminate-all
 ```
 
 **Sample Response**

@@ -68,7 +68,7 @@ Redis will be available on `localhost:6379`
 ./mvnw spring-boot:run
 ```
 
-The service will start on `http://localhost:8082`
+The service will start on `http://localhost:8084`
 
 ## 🔧 Configuration
 
@@ -82,7 +82,7 @@ redis:
 
 # Server Configuration
 server:
-  port: 8082
+  port: 8084
 
 # Logging Configuration
 logging:
@@ -131,7 +131,7 @@ logging:
 ### Postman Collection
 
 1. Import the Postman collection from: [Postman Collection](https://www.postman.com/menekse-3683/workspace/redis-dockerizer/folder/24190370-9952a059-b3ad-4923-83a5-15f25771b078?action=share&source=copy-link&creator=24190370)
-2. Set the base URL to `http://localhost:8082`
+2. Set the base URL to `http://localhost:8084`
 3. Explore all available endpoints
 
 ### Example Usage
@@ -139,7 +139,7 @@ logging:
 #### Publishing a Message
 
 ```bash
-curl -X POST http://localhost:8082/api/pubsub/messages \
+curl -X POST http://localhost:8084/api/pubsub/messages \
   -H "Content-Type: application/json" \
   -d '{
     "channel": "demo.chat.general",
@@ -151,13 +151,13 @@ curl -X POST http://localhost:8082/api/pubsub/messages \
 #### Subscribing to a Channel
 
 ```bash
-curl -X POST http://localhost:8082/api/pubsub/channels/random/subscribe
+curl -X POST http://localhost:8084/api/pubsub/channels/random/subscribe
 ```
 
 #### Getting Metrics
 
 ```bash
-curl http://localhost:8082/api/metrics
+curl http://localhost:8084/api/metrics
 ```
 
 ## 🏭 Use Cases

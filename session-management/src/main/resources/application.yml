@@ -1,5 +1,5 @@
 server:
-  port: 8082 # Port where the Spring Boot application will run (default: 8080)
+  port: 8085 # Port where the Spring Boot application will run (default: 8080)
 
 spring:
   session:
