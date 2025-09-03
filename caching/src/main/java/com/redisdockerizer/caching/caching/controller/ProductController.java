@@ -1,16 +1,14 @@
 package com.redisdockerizer.caching.caching.controller;
 
+import com.redisdockerizer.caching.caching.exception.ProductNotFoundException;
 import com.redisdockerizer.caching.caching.model.Product;
 import com.redisdockerizer.caching.caching.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -51,12 +49,11 @@ public class ProductController {
      * is backed by Redis. Later identical requests should serve data from
      * cache (given a stable dataset and proper cache configuration).
      *
-     * @return {@code 200 OK} with the complete list of products (possibly empty).
+     * @return list of products (possibly empty).
      */
     @GetMapping
-    public ResponseEntity<List<Product>> getAllProducts() {
-        List<Product> products = productService.getAllProducts();
-        return ResponseEntity.ok(products);
+    public List<Product> getAllProducts() {
+        return productService.getAllProducts();
     }
 
     /**
@@ -67,12 +64,13 @@ public class ProductController {
      * until the entry is invalidated by a write operation.
      *
      * @param id the product UUID.
-     * @return {@code 200 OK} with the product if found; otherwise {@code 404 Not Found}.
+     * @return the product if found.
+     * @throws ProductNotFoundException if the product does not exist (mapped to HTTP 404).
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable UUID id) {
-        Optional<Product> product = productService.getById(id);
-        return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public Product getProductById(@PathVariable UUID id) {
+        return productService.getById(id)
+                .orElseThrow(ProductNotFoundException::new);
     }
 
     /**
@@ -83,13 +81,12 @@ public class ProductController {
      * any provided {@code id} is ignored in favor of a newly generated one.
      *
      * @param product the product payload (without an ID).
-     * @return {@code 201 Created} with the persisted product.
+     * @return the persisted product.
      */
     @PostMapping
-    public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product) {
+    public Product createProduct(@Valid @RequestBody Product product) {
         product.setId(null);
-        Product created = productService.create(product);
-        return ResponseEntity.status(HttpStatus.CREATED).body(created);
+        return productService.create(product);
     }
 
     /**
@@ -101,13 +98,14 @@ public class ProductController {
      *
      * @param id      the product UUID to update.
      * @param product the new product state (validated).
-     * @return {@code 200 OK} with the updated product if it exists; otherwise {@code 404 Not Found}.
+     * @return the updated product if it exists.
+     * @throws ProductNotFoundException if the product does not exist (mapped to HTTP 404).
      */
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable UUID id,
-                                                 @Valid @RequestBody Product product) {
-        Optional<Product> updated = productService.update(id, product);
-        return updated.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public Product updateProduct(@PathVariable UUID id,
+                                 @Valid @RequestBody Product product) {
+        return productService.update(id, product)
+                .orElseThrow(ProductNotFoundException::new);
     }
 
     /**
@@ -117,15 +115,13 @@ public class ProductController {
      * later reads of the same ID should miss both the cache and the backing store.
      *
      * @param id the product UUID to delete.
-     * @return {@code 204 No Content} if deletion succeeded; otherwise {@code 404 Not Found}.
+     * @throws ProductNotFoundException if the product does not exist (mapped to HTTP 404).
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable UUID id) {
+    public void deleteProduct(@PathVariable UUID id) {
         boolean deleted = productService.delete(id);
-        if (deleted) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
+        if (!deleted) {
+            throw new ProductNotFoundException();
         }
     }
 
@@ -136,11 +132,10 @@ public class ProductController {
      * write operations. Depending on your caching strategy, this endpoint may or
      * may not be cached.
      *
-     * @return {@code 200 OK} with the total product count.
+     * @return total product count.
      */
     @GetMapping("/count")
-    public ResponseEntity<Long> getProductCount() {
-        long count = productService.count();
-        return ResponseEntity.ok(count);
+    public long getProductCount() {
+        return productService.count();
     }
 }
